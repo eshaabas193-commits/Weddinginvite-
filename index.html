@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wedding of Esha & Khizar</title>
+
+<!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital@0;1&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+:root {
+    --primary-gold: #D4AF37;
+    --soft-pink: #FADADD;
+    --bg-cream: #FDFBF7;
+    --text-dark: #4A4A4A;
+    --text-light: #777;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    line-height: 1.8;
+}
+h1, h2, h3 {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+}
+.arabic-text {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+    color: var(--primary-gold);
+    margin-bottom: 10px;
+}
+.music-btn {
+    display:block;
+    opacity: 1;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--primary-gold);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    color: var(--primary-gold);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.music-btn:hover {
+    background: var(--primary-gold);
+    color: white;
+    transform: scale(1.1);
+}
+/* Hero */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+.hero h2 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.hero p {
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.verse-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 20px 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    margin-top: 20px;
+}
+.verse-translation {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+section {
+    padding: 80px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+.section-title {
+    font-size: 3rem;
+    color: var(--primary-gold);
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+}
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 2px;
+    background: var(--soft-pink);
+    margin: 10px auto 0;
+}
+.story-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+}
+.story-text {
+    flex: 1 1 400px;
+    text-align: justify;
+    text-align-last: center;
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+.story-img {
+    flex: 1 1 300px;
+}
+.story-img img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 10px 10px 0px var(--soft-pink);
+}
+/* Scratch Date Reveal */
+.scratch-container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: white;
+    border: 2px solid var(--primary-gold);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: crosshair;
+}
+.date-reveal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--soft-pink);
+    color: var(--text-dark);
+    z-index: 1;
+}
+.date-reveal h3 {
+    font-size: 2rem;
+    color: var(--primary-gold);
+}
+#scratchCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+.scratch-msg {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+/* Countdown */
+.countdown-wrapper {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-top: -40px;
+}
+.timer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.time-box {
+    text-align: center;
+}
+.time-box span {
+    display: block;
+    font-size: 3rem;
+    font-family: 'Great Vibes', cursive;
+    color: var(--primary-gold);
+    line-height: 1;
+}
+.time-box label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-light);
+}
+/* Event Details */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+.detail-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    border-top: 4px solid var(--primary-gold);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.detail-card i {
+    font-size: 2rem;
+    color: var(--primary-gold);
+    margin-bottom: 15px;
+}
+.map-container {
+    margin-top: 50px;
+    height: 400px;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+footer {
+    background: var(--text-dark);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+footer p {
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+@media (max-width: 768px) {
+    .hero h2 { font-size: 3rem; }
+    .story-content { flex-direction: column-reverse; }
+    .timer { gap: 10px; }
+    .time-box span { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Music Button -->
+<button class="music-btn" id="musicToggle" title="Play Music">
+    <i class="fas fa-music"></i>
+</button>
+<audio id="bgMusic" loop>
+    <source src="mysong.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Hero Section -->
+<header class="hero" data-aos="fade-down">
+    <div data-aos="fade-up" data-aos-delay="500">
+        <p>You are cordially invited to wedding ceremony of </p>
+        <h2>Esha & Khizar</h2>
+        <div class="verse-container" data-aos="zoom-in" data-aos-delay="700">
+            <div class="arabic-text">❤️ وَخَلَقْنَاكُمْ أَزْوَاجًاا</div>
+            <div>"Wa Khalaqnakum Azwajan"</div>
+            <div class="verse-translation">"And He created for you spouses from among yourselves."</div>
+        </div>
+    </div>
+</header>
+
+<!-- Our Story -->
+<section id="story" data-aos="fade-up">
+<h2 class="section-title">Our Story</h2>
+<div class="story-content">
+<div class="story-text" data-aos="fade-right">
+<p>
+It all started at a family gathering, true companionship is a gift from Allah, and a spouse is a trust and blessing in this life. May Allah bless our union with barakah, happiness, and faithfulness
+</div>
+<div class="story-img" data-aos="fade-left">
+<img src="https://plus.unsplash.com/premium_photo-1675003662150-2569448d2b3b?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Our Story">
+</div>
+</div>
+</section>
+
+<!-- Scratch Date -->
+<section id="date" data-aos="fade-up">
+<h2 class="section-title">Save the Date</h2>
+<p class="scratch-msg">Scratch below to reveal the wedding date</p>
+<div class="scratch-container">
+    <div class="date-reveal" data-aos="zoom-in" data-aos-delay="300">
+        <h3>23rd March 2026</h3>
+    </div>
+    <canvas id="scratchCanvas" width="300" height="200"></canvas>
+</div>
+</section>
+
+<!-- Countdown -->
+<section id="countdown" data-aos="fade-up">
+<h2 class="section-title">Countdown</h2>
+<div class="countdown-wrapper">
+<div class="timer">
+<div class="time-box" data-aos="fade-up" data-aos-delay="200">
+<span id="days">0</span>
+<label>Days</label>
+</div>
+<div class="time-box" data-aos="fade-up" data-aos-delay="400">
+<span id="hours">0</span>
+<label>Hours</label>
+</div>
+<div class="time-box" data-aos="fade-up" data-aos-delay="600">
+<span id="minutes">0</span>
+<label>Minutes</label>
+</div>
+<div class="time-box" data-aos="fade-up" data-aos-delay="800">
+<span id="seconds">0</span>
+<label>Seconds</label>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Event Details -->
+<section id="events" data-aos="fade-up">
+<h2 class="section-title">Event Details</h2>
+<div class="details-grid">
+<div class="detail-card" data-aos="zoom-in">
+<i class="fas fa-calendar-alt"></i>
+<h3>Mehndi</h3>
+<p>22nd March 2026<br>
+Venue: Home Sweet Home<br>
+Timing: 8:00 PM</p>
+</div>
+<div class="detail-card" data-aos="zoom-in" data-aos-delay="100">
+<i class="fas fa-calendar-alt"></i>
+<h3>Baraat</h3>
+<p>23rd March 2026<br>
+Venue: Buraq Marquee, Sambrial<br>
+Timing: 6:00 PM to 10 PM</p>
+<div class="map-container" data-aos="fade-up" data-aos-delay="400">
+<iframe src="https://maps.google.com/maps?q=Buraq%20Marquee%20Sambrial&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+</div>
+</div>
+<div class="detail-card" data-aos="zoom-in" data-aos-delay="200">
+<i class="fas fa-calendar-alt"></i>
+<h3>Waleema</h3>
+<p>24th March 2026<br>
+Venue: GC Garden, Daska<br>
+Timing: 6:00 PM to 10:00 PM</p>
+</div>
+</div>
+<div class="map-container" data-aos="fade-up" data-aos-delay="400">
+<iframe src="https://maps.google.com/maps?q=GC%20Garden%20Daska&t=&z=15&ie=UTF8&iwloc=&output=embed"></iframe>
+</div>
+</section>
+
+<!-- Footer -->
+<footer data-aos="fade-up">
+<p>© 2026 Esha & Khizar Wedding Invitation. Your presence means a lot!</p>
+</footer>
+
+<!-- Scripts -->
+<script>
+// Music Toggle
+const musicBtn = document.getElementById('musicToggle');
+const bgMusic = document.getElementById('bgMusic');
+musicBtn.addEventListener('click', ()=>{
+    if(bgMusic.paused){ bgMusic.play(); musicBtn.innerHTML='<i class="fas fa-pause"></i>'; }
+    else { bgMusic.pause(); musicBtn.innerHTML='<i class="fas fa-music"></i>'; }
+});
+
+// Scratch Card
+const canvas=document.getElementById('scratchCanvas');
+const ctx=canvas.getContext('2d');
+ctx.fillStyle='#C0C0C0';
+ctx.fillRect(0,0,canvas.width,canvas.height);
+ctx.globalCompositeOperation='destination-out';
+let isDrawing=false;
+canvas.addEventListener('mousedown',()=>isDrawing=true);
+canvas.addEventListener('mouseup',()=>isDrawing=false);
+canvas.addEventListener('mouseleave',()=>isDrawing=false);
+canvas.addEventListener('mousemove',drawScratch);
+canvas.addEventListener('touchstart',(e)=>{isDrawing=true;drawScratch(e);});
+canvas.addEventListener('touchend',()=>isDrawing=false);
+canvas.addEventListener('touchmove',drawScratch);
+function getPos(evt){
+    const rect=canvas.getBoundingClientRect();
+    if(evt.touches){ return {x:evt.touches[0].clientX-rect.left, y:evt.touches[0].clientY-rect.top} }
+    return {x:evt.clientX-rect.left, y:evt.clientY-rect.top}
+}
+function drawScratch(e){ if(!isDrawing) return; e.preventDefault(); const pos=getPos(e); ctx.beginPath(); ctx.arc(pos.x,pos.y,25,0,Math.PI*2); ctx.fill(); }
+
+// Countdown Timer
+const countdownDate=new Date("March 23, 2026 18:00:00").getTime();
+const daysEl=document.getElementById('days');
+const hoursEl=document.getElementById('hours');
+const minutesEl=document.getElementById('minutes');
+const secondsEl=document.getElementById('seconds');
+function updateCountdown(){
+    const now=new Date().getTime();
+    const distance=countdownDate-now;
+    const days=Math.floor(distance/(1000*60*60*24));
+    const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+    const minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+    const seconds=Math.floor((distance%(1000*60))/1000);
+    daysEl.innerText=days; hoursEl.innerText=hours; minutesEl.innerText=minutes; secondsEl.innerText=seconds;
+    if(distance<0){ clearInterval(countdownInterval); daysEl.innerText=hoursEl.innerText=minutesEl.innerText=secondsEl.innerText=0; }
+}
+const countdownInterval=setInterval(updateCountdown,1000);
+updateCountdown();
+</script>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({duration:1200, once:true});</script>
+</body>
+</html>
